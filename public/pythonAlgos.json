@@ -2,8 +2,20 @@
     "mappings": [
         {
             "id": 1,
-            "algoName": "sumABC",
-            "codeSnippet": "def sum(a, b, c):\n  total = 0\n  total = a + b + c\n  return total\n\n'''\n\nExample usage:\nsum(1, 2, 3) would return 6.\n'''"
+            "algoName": "sumABandC",
+            "codeSnippet": "def sum(a, b, c):\n  total = 0\n  total = a + b + c\n  return total\n\n\n'''\nExample usage:\nsum(1, 2, 3) would return 6.\n'''"
+        },
+        {
+            "id": 2,
+            "algoName": "print",
+            "codeSnippet": "def greet(string):\n  print(string)\n\nstring_hi = 'Hello world!'\ngreet(string_hi)\n\n\n'''\nExample usage:\ngreet() should print 'Hello world!'.\n'''"
+        },
+        {
+            "id": 3,
+            "algoName": "removeElement",
+            "codeSnippet": "'''\nThe below function, removeElement, should remove all occurrences of val from nums\n\nExample usage:\nnumber_list = [1,2,3,4,5,5]\nvalue = 5\n\nOnce removeElement is run, number_list would be [1,2,3,4] and removeElement would return 4\n'''\n\ndef removeElement(nums: List[int], val: int) -> int:\n  while val in nums:\n    nums.remove(val)\n  return len(nums)"
         }
     ]
 }
+
+
