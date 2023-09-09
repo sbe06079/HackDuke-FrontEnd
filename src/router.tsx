@@ -1,5 +1,6 @@
 import React from "react";
 import  { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import Home from "./Home";
 
 /**
  * @param p pathname
@@ -7,11 +8,13 @@ import  { RouterProvider, createBrowserRouter } from 'react-router-dom';
  * @returns {{path: string, element: JSX.Element}} json object with path and string in it for createBrowserRouter
  */
 
-// const makeRoute = (p: string, el: JSX.Element): {path: string, element: JSX.Element} => {
-//    return {path: p, element: el};
-// };
+const makeRoute = (p: string, el: JSX.Element): {path: string, element: JSX.Element} => {
+    return {path: p, element: el};
+};
 
-const router = createBrowserRouter([]);
+const router = createBrowserRouter([
+    makeRoute("/", <Home/>),
+]);
 
 function SiteRouter() {
     return <RouterProvider router={router}/>; // only element that should ever be here
