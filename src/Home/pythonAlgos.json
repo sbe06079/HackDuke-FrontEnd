@@ -1,0 +1,9 @@
+{
+    "mappings": [
+        {
+            "id": 1,
+            "algoName": "sumABC",
+            "codeSnippet": "def sum(a, b, c):\ntotal = 0\ntotal = a + b + c\nreturn total\n\n# Example usage: sum(1, 2, 3) should return 6."
+        }
+    ]
+}
