@@ -3,7 +3,7 @@
         {
             "id": 1,
             "algoName": "sumABC",
-            "codeSnippet": "def sum(a, b, c):\ntotal = 0\ntotal = a + b + c\nreturn total\n\n# Example usage: sum(1, 2, 3) should return 6."
+            "codeSnippet": "def sum(a, b, c):\n  total = 0\n  total = a + b + c\n  return total\n\n'''\n\nExample usage:\nsum(1, 2, 3) would return 6.\n'''"
         }
     ]
 }
