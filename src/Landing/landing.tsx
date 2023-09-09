@@ -73,7 +73,7 @@ function Landing() {
                 ))}
             </select>
         </div>
-        <button className="next" onClick={() => {window.location.href = "/language";}}>Next&nbsp;➔
+        <button id="nextHome" className="next" onClick={() => {window.location.href = "/language";}}>Next&nbsp;➔
         </button>
         
     </div>;

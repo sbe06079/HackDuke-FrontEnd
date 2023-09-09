@@ -41,18 +41,3 @@ body {
     color: white;
     background-color: transparent; /* Make the background transparent */
 }
-
-.next {
-    position: absolute;
-    margin-top: 180px;
-    margin-left: 1000px;
-    display: inline-flex;
-    padding: 8px 16px;
-    justify-content: center;
-    align-items: center;
-    gap: 8px;
-    border-radius: 4px;
-    border: 1px solid #8EFFC9;
-    background-color: transparent;
-    color: #8EFFC9;
-}
