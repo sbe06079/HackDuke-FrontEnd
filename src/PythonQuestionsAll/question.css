@@ -1,0 +1,46 @@
+.questionCard {
+    display: flex;
+    padding: 16px 24px 32px 24px;
+    flex-direction: column;
+    border-radius: 8px;
+    background: #505054;
+    height: 180px;
+    width: 300px;
+}
+
+.questionTitle {
+    gap: 6px;
+    display: flex;
+    margin-top: -20px;
+}
+
+.questionText {
+    font-family: Apple SD Gothic Neo;
+}
+
+#greenTitle {
+    color: #8EFFC9;
+    font-size: 25px;
+    font-weight: 600;
+    letter-spacing: 1.65px; 
+}
+
+#regularTitle {
+    color: white;
+    font-size: 25px;
+    font-weight: 600;
+    letter-spacing: 1.65px; 
+}
+
+.purple-text {
+    color: #C9A0FF;
+}
+
+#description {
+    font-size: 14px;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: 0.9px; 
+    margin-top: -10px;
+    color: white;
+}
