@@ -37,9 +37,21 @@ function Home() {
     
     const test = async () => {
         try {
-            const user = await fetch("/api/data").then(v => v.json());
-            console.log(user);
-            setApiMessage(user.message);
+            const response = await fetch("/question", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ question: "What is 2 times 8" })
+            }).then(v => v.json());
+            if (response.ok) {
+                const data = await response.json(); // Parse the response JSON
+                console.log("good");
+                setApiMessage(data.completion); // Access the "completion" field from the response
+            } else {
+                console.error("API Error:", response.statusText);
+                setApiMessage("API Error");
+            }
         } catch (err) {
             console.error(err);
             setApiMessage("Something went wrong");
