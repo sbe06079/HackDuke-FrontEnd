@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "./landing.css";
+import "./pythonquestions.css";
 
 const languages = [
     { name: "English (American)", code: "EN-US" },
@@ -54,7 +54,7 @@ function Landing() {
     }, []);
     
     return <div>
-        <img id="logo" src="/FrameLogo2x.png" alt="Frame Logo" />
+        <img id="logo" src="/FrameLogo.png" alt="Frame Logo" />
         <div className="text" id="title">
             {titleState}
         </div>
@@ -67,8 +67,7 @@ function Landing() {
                 ))}
             </select>
         </div>
-        <button className="next" onClick={() => {window.location.href = "/language";}}>Next&nbsp;➔
-        </button>
+        <button className="next" onClick={() => {window.location.href = "/language";}}>Next</button>
         
     </div>;
 }

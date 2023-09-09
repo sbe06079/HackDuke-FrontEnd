@@ -3,12 +3,12 @@
         {
             "id": 1,
             "algoName": "sumABandC",
-            "codeSnippet": "def sum(a, b, c):\n  total = 0\n  total = a + b + c\n  return total\n\n\n'''\nExample usage:\nsum(1, 2, 3) would return 6.\n'''"
+            "codeSnippet": "'''\nThe below function, sum, should add the three integers inserted as inputs to the function and return the sum.\n\nExample usage:\nsum(1,3,9) should return 13.\n'''\n\ndef sum(a, b, c):\n  total = 0\n  total = a + b + c\n  return total"
         },
         {
             "id": 2,
             "algoName": "print",
-            "codeSnippet": "def greet(string):\n  print(string)\n\nstring_hi = 'Hello world!'\ngreet(string_hi)\n\n\n'''\nExample usage:\ngreet() should print 'Hello world!'.\n'''"
+            "codeSnippet": "'''\nThe below function, greet, should print the String that is inserted as input to the function.\n\nExample usage:\ngreet(‘Hello world!’) should print 'Hello world!’.\n'''\n\ndef greet(string):\n  print(string)\n\nstring_hi = 'Hello world!'\ngreet(string_hi)"
         },
         {
             "id": 3,
