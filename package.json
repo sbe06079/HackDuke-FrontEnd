@@ -20,6 +20,7 @@
         "@types/react": "^18.2.6",
         "@types/react-dom": "^18.2.4",
         "@types/react-modal": "^3.16.0",
+        "@types/react-syntax-highlighter": "^15.5.7",
         "@types/validator": "^13.7.17",
         "@typescript-eslint/eslint-plugin": "^5.59.6",
         "@typescript-eslint/parser": "^5.59.6",
@@ -44,6 +45,7 @@
         "@mui/material": "^5.13.4",
         "@reduxjs/toolkit": "^1.9.5",
         "@stripe/stripe-js": "^1.54.0",
+        "prism-react-renderer": "^2.0.6",
         "query-string": "^8.1.0",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
@@ -51,6 +53,7 @@
         "react-modal": "^3.16.1",
         "react-redux": "^8.0.7",
         "react-router-dom": "^6.11.2",
+        "react-syntax-highlighter": "^15.5.0",
         "redux": "^4.2.1",
         "validator": "^13.9.0"
     }
