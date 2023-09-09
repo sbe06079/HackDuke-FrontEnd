@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /* Target the .code-snippet element */
 .code-snippet {
     position: relative; /* Position relative to the container */
@@ -13,3 +14,8 @@
     background-color: transparent; /* Make the background transparent */
   }
   
+=======
+.text {
+    color: white;
+}
+>>>>>>> c0bd79a7804030df18db694f3fc269ec0e13e7bf

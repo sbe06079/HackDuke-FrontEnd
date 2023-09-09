@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./landing.css";
 
 const languages = [
-    { name: "English (American)", code: "EN-US" },
+    { name: "English (American)", code: "EN" },
     { name: "Spanish", code: "ES" },
     { name: "Chinese (simplified)", code: "ZH" },
     { name: "Bulgarian", code: "BG" },
@@ -43,7 +43,8 @@ function Landing() {
     const [isFading, setIsFading] = useState(false);
 
     const handleChange = (e: any) => {
-        setSelectedLanguage(e.target.value);
+        const selectedLang = languages.find((language) => language.name === e.target.value);
+        setSelectedLanguage(selectedLang ?? languages[0]);
     };
 
     
@@ -73,7 +74,9 @@ function Landing() {
                 ))}
             </select>
         </div>
-        <button className="next" onClick={() => {window.location.href = "/language";}}>Next&nbsp;➔
+        <button id="nextHome" className="next" onClick={() => {
+            window.location.href = `language?lang=${selectedLanguage.code}`;}
+            }>Next&nbsp;➔
         </button>
         
     </div>;

@@ -4,6 +4,7 @@ import Home from "./Home";
 import Landing from "./Landing";
 import Language from "./Language";
 import Pythonquestions from "./Pythonquestions";
+import PythonQuestionsAll from "./PythonQuestionsAll";
 
 /**
  * @param p pathname
@@ -16,11 +17,11 @@ const makeRoute = (p: string, el: JSX.Element): {path: string, element: JSX.Elem
 };
 
 const router = createBrowserRouter([
-    makeRoute("/", <Home/>),
-    makeRoute("/landing", <Landing/>),
+    makeRoute("/testing", <Home/>),
+    makeRoute("/", <Landing/>),
     makeRoute("/language", <Language/>),
     makeRoute("/pythonquestions", <Pythonquestions/>),
-
+    makeRoute("/pythonquestionsall", <PythonQuestionsAll/>)
 ]);
 
 function SiteRouter() {
