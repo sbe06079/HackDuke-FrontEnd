@@ -43,7 +43,7 @@ body {
 }
 
 .next {
-    position: abosulte;
+    position: absolute;
     margin-top: 180px;
     margin-left: 1000px;
     display: inline-flex;
