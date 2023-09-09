@@ -13,8 +13,6 @@ const codeSnippetStyle = {
     boxShadow: 'none',
   };
 
-    
-
 // Define a custom style for the SyntaxHighlighter component
 const customSyntaxStyle = {
     ...dark,
@@ -23,9 +21,6 @@ const customSyntaxStyle = {
     },
 };
   
-  
-
-
 function Home() {
     // Find the object with algoName === "sumABC"
     const codeSnippetObject = pythonAlgosData.mappings.find(item => item.algoName === "removeElement");
@@ -37,7 +32,7 @@ function Home() {
     
     const test1 = async () => {
         try {
-            const response = await fetch("/api/question", {
+            const response = await fetch("/api/chatGPT", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
@@ -68,6 +63,32 @@ function Home() {
             setApiMessage("Something went wrong");
         }
     };
+
+    const test3 = async () => {
+        try {
+            const response = await fetch("/api/deepl", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ 
+                    translate: "Hello, Pascal. How are you.",
+                    target_lang: "FR"
+                })
+            }).then(v => v.json());
+
+            console.log(response);
+            if (response) {
+                setApiMessage(response);
+            } else {
+                console.error(response);
+                setApiMessage("API Error");
+            }
+        } catch (err) {
+            console.error(err);
+            setApiMessage("Something went wrong");
+        }
+    };
     
     return (
         <>
@@ -75,7 +96,7 @@ function Home() {
             <SyntaxHighlighter language="python" style={customSyntaxStyle} customStyle={codeSnippetStyle}>
                 {codeSnippet}
             </SyntaxHighlighter>
-            <button onClick={test1}>Fetch Data</button>
+            <button onClick={test3}>Fetch Data</button>
             <div>{apiMessage}</div>
         </>
     );
