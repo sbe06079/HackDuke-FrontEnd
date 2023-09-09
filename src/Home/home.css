@@ -1,0 +1,15 @@
+/* Target the .code-snippet element */
+.code-snippet {
+    position: relative; /* Position relative to the container */
+  }
+  
+  /* Style the "def" keyword */
+  .code-snippet::before {
+    content: "def"; /* Define the content to be "def" */
+    color: green; /* Set the text color to green */
+    position: absolute; /* Position absolutely within the container */
+    top: 0; /* Adjust the top position to align with the text */
+    left: 0; /* Adjust the left position to align with the text */
+    background-color: transparent; /* Make the background transparent */
+  }
+  

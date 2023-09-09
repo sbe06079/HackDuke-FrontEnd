@@ -7,13 +7,13 @@
         },
         {
             "id": 2,
-            "algoName": "print",
+            "algoName": "greet",
             "codeSnippet": "'''\nThe below function, greet, should print the String that is inserted as input to the function.\n\nExample usage:\ngreet(‘Hello world!’) should print 'Hello world!’.\n'''\n\ndef greet(string):\n  print(string)\n\nstring_hi = 'Hello world!'\ngreet(string_hi)"
         },
         {
             "id": 3,
             "algoName": "removeElement",
-            "codeSnippet": "'''\nThe below function, removeElement, should remove all occurrences of val from nums\n\nExample usage:\nnumber_list = [1,2,3,4,5,5]\nvalue = 5\n\nOnce removeElement is run, number_list would be [1,2,3,4] and removeElement would return 4\n'''\n\ndef removeElement(nums: List[int], val: int) -> int:\n  while val in nums:\n    nums.remove(val)\n  return len(nums)"
+            "codeSnippet": "'''\nThe below function, removeElement, should remove all occurrences of val from nums\n\nExample usage:\nnumber_list = [1,2,3,4,5,5]\nvalue = 5\n\nOnce removeElement is run, number_list would be [1,2,3,4] and removeElement would return 4\n'''\n\ndef removeElement(nums: List[int], val: int) -> int:\n  while val in nums:\n    nums.remove(val)\n  return removeElement(nums)"
         }
     ]
 }
