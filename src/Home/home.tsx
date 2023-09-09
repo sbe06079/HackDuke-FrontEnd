@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import "./home.css";
 import pythonAlgosData from '../../public/pythonAlgos.json';
-
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { dark } from 'react-syntax-highlighter/dist/esm/styles/prism';
+import { askChatGPT, translatePage, translateText } from "../utils";
+import ReactDOMServer from "react-dom/server";
+import parse from 'html-react-parser';
 
 const codeSnippetStyle = {
     backgroundColor: 'transparent',
@@ -23,81 +25,45 @@ const customSyntaxStyle = {
   
 function Home() {
     // Find the object with algoName === "sumABC"
-    const codeSnippetObject = pythonAlgosData.mappings.find(item => item.algoName === "removeElement");
+    const codeSnippetObject = pythonAlgosData.mappings.find(item => item.algoName === "sumABandC");
+    
     // Extract codeSnippet if the object exists
     const codeSnippet = codeSnippetObject ? codeSnippetObject.codeSnippet : "";
-
-
     const [apiMessage, setApiMessage] = useState("");
-    
-    const test1 = async () => {
-        try {
-            const response = await fetch("/api/chatGPT", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({ question: "What is 2 * 8" })
-            }).then(v => v.json());
+    const [htmlCode, setHtmlCode] = useState(`
+    <!-- Your HTML code here -->
+  `);
 
-            console.log(response);
-            if (response) {
-                setApiMessage(response.choices[0].message.content); // Access the "completion" field from the response
-            } else {
-                console.error(response);
-                setApiMessage("API Error");
-            }
-        } catch (err) {
-            console.error(err);
-            setApiMessage("Something went wrong");
-        }
-    };
-
-    const test2 = async () => {
-        try {
-            const user = await fetch("/api/data").then(v => v.json());
-            console.log(user);
-            setApiMessage(user.message);
-        } catch (err) {
-            console.error(err);
-            setApiMessage("Something went wrong");
-        }
-    };
-
-    const test3 = async () => {
-        try {
-            const response = await fetch("/api/deepl", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({ 
-                    translate: "Hello, Pascal. How are you.",
-                    target_lang: "FR"
-                })
-            }).then(v => v.json());
-
-            console.log(response);
-            if (response) {
-                setApiMessage(response);
-            } else {
-                console.error(response);
-                setApiMessage("API Error");
-            }
-        } catch (err) {
-            console.error(err);
-            setApiMessage("Something went wrong");
-        }
-    };
-    
     return (
         <>
             <h1>Hello World</h1>
-            <SyntaxHighlighter language="python" style={customSyntaxStyle} customStyle={codeSnippetStyle}>
+            {<SyntaxHighlighter language="python" style={customSyntaxStyle} customStyle={codeSnippetStyle}>
                 {codeSnippet}
-            </SyntaxHighlighter>
-            <button onClick={test3}>Fetch Data</button>
-            <div>{apiMessage}</div>
+            </SyntaxHighlighter>}
+            
+            <button onClick={async () => {
+                setApiMessage(await askChatGPT("What is 1 + 1?"));
+            }}>
+                Ask ChatGPT
+            </button>
+
+            {parse(apiMessage)}
+
+            <button onClick={async () => {
+                setApiMessage(await translateText("Hi, I am Pascal! Nice to meet you."));
+            }}>
+                Translate with DeepL
+            </button>
+
+            <button onClick={async () => { // should input a webpage
+                setHtmlCode(await translatePage(ReactDOMServer.renderToString(<div className="text">Hi, I am Pascal! Nice to meet you.</div>)));
+            }}>
+                Translate Page with DeepL
+            </button>
+            <div>
+                {/* Render the HTML code */}
+                {parse(htmlCode)}
+            </div>
         </>
     );
 }
