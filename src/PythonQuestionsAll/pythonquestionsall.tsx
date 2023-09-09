@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./pythonquestionsall.css";
 import Question from "./question";
 
@@ -21,6 +21,16 @@ const row3 = [
 ];
 
 function PythonQuestionsAll() {
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const lang = urlParams.get('lang')?.toString() ?? "EN";
+    const [speakingLanguage, setSpeakingLanguage] = useState(lang);
+    console.log(speakingLanguage);
+
+    useEffect(() => {
+        // 
+    }, [speakingLanguage]);
+
     return <div>
         <div className="header">
             <img id="logo" src="/FrameLogo.png" alt="Frame Logo" />;

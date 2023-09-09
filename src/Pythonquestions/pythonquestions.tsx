@@ -39,6 +39,7 @@ let i =0;
 function Pythonquestions() {
 
     const [selectedLanguage, setSelectedLanguage] = useState(languages[0]);
+    const urlParams = new URLSearchParams(window.location.search);
 
     const handleChange = (e: any) => {
         setSelectedLanguage(e.target.value);
