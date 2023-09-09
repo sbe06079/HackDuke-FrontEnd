@@ -11,23 +11,34 @@ function Home() {
     const codeSnippet = pythonAlgosData.mappings[0]?.codeSnippet;
     const [apiMessage, setApiMessage] = useState("");
     
-    const test = async () => {
+    const test1 = async () => {
         try {
-            const response = await fetch("/question", {
+            const response = await fetch("/api/question", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
                 },
-                body: JSON.stringify({ question: "What is 2 times 8" })
+                body: JSON.stringify({ question: "What is 2 * 8" })
             }).then(v => v.json());
-            if (response.ok) {
-                const data = await response.json(); // Parse the response JSON
-                console.log("good");
-                setApiMessage(data.completion); // Access the "completion" field from the response
+
+            console.log(response);
+            if (response) {
+                setApiMessage(response.choices[0].message.content); // Access the "completion" field from the response
             } else {
-                console.error("API Error:", response.statusText);
+                console.error(response);
                 setApiMessage("API Error");
             }
+        } catch (err) {
+            console.error(err);
+            setApiMessage("Something went wrong");
+        }
+    };
+
+    const test2 = async () => {
+        try {
+            const user = await fetch("/api/data").then(v => v.json());
+            console.log(user);
+            setApiMessage(user.message);
         } catch (err) {
             console.error(err);
             setApiMessage("Something went wrong");
@@ -40,7 +51,7 @@ function Home() {
             <SyntaxHighlighter language="python" style={prism}>
                 {codeSnippet}
             </SyntaxHighlighter>
-            <button onClick={test}>Fetch Data</button>
+            <button onClick={test1}>Fetch Data</button>
             <div>{apiMessage}</div>
         </>
     );
