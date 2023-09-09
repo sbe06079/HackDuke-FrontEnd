@@ -2,6 +2,7 @@ import React from "react";
 import  { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import Home from "./Home";
 import Landing from "./Landing";
+import Language from "./Language";
 
 /**
  * @param p pathname
@@ -15,7 +16,8 @@ const makeRoute = (p: string, el: JSX.Element): {path: string, element: JSX.Elem
 
 const router = createBrowserRouter([
     makeRoute("/", <Home/>),
-    makeRoute("/landing", <Landing/>)
+    makeRoute("/landing", <Landing/>),
+    makeRoute("/language", <Language/>)
 ]);
 
 function SiteRouter() {

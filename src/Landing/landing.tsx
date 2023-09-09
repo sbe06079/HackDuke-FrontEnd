@@ -2,10 +2,36 @@ import React, { useEffect, useState } from "react";
 import "./landing.css";
 
 const languages = [
-    "English",
-    "Korean (한국어)",
-    "German (Deutsch)",
-    "Chinese (中文)"
+    { name: "English (American)", code: "EN-US" },
+    { name: "Spanish", code: "ES" },
+    { name: "Chinese (simplified)", code: "ZH" },
+    { name: "Bulgarian", code: "BG" },
+    { name: "Czech", code: "CS" },
+    { name: "Danish", code: "DA" },
+    { name: "German", code: "DE" },
+    { name: "Greek", code: "EL" },
+    { name: "Estonian", code: "ET" },
+    { name: "Finnish", code: "FI" },
+    { name: "French", code: "FR" },
+    { name: "Hungarian", code: "HU" },
+    { name: "Indonesian", code: "ID" },
+    { name: "Italian", code: "IT" },
+    { name: "Japanese", code: "JA" },
+    { name: "Korean", code: "KO" },
+    { name: "Lithuanian", code: "LT" },
+    { name: "Latvian", code: "LV" },
+    { name: "Norwegian (Bokmål)", code: "NB" },
+    { name: "Dutch", code: "NL" },
+    { name: "Polish", code: "PL" },
+    { name: "Portuguese (Brazilian)", code: "PT-BR" },
+    { name: "Portuguese (all Portuguese varieties excluding Brazilian Portuguese)", code: "PT-PT" },
+    { name: "Romanian", code: "RO" },
+    { name: "Russian", code: "RU" },
+    { name: "Slovak", code: "SK" },
+    { name: "Slovenian", code: "SL" },
+    { name: "Swedish", code: "SV" },
+    { name: "Turkish", code: "TR" },
+    { name: "Ukrainian", code: "UK" },
 ];
 const title: string[] = ["Select your language", "언어를 선택하십시오", "Wählen Sie Ihre Sprache", "选择语言"];
 let i =0;
@@ -33,15 +59,15 @@ function Landing() {
             {titleState}
         </div>
         <div id="selectLang">
-            <select className="custom-dropdown" value={selectedLanguage} onChange={handleChange}>
+            <select className="custom-dropdown" value={selectedLanguage.name} onChange={handleChange}>
                 {languages.map((language, index) => (
-                <option key={index} value={language}>
-                    {language}
+                <option key={index} value={language.name}>
+                    {language.name}
                 </option>
                 ))}
             </select>
         </div>
-        <button className="next">Next</button>
+        <button className="next" onClick={() => {window.location.href = "/language";}}>Next</button>
         
     </div>;
 }
