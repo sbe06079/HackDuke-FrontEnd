@@ -45,11 +45,8 @@
         "@mui/material": "^5.13.4",
         "@reduxjs/toolkit": "^1.9.5",
         "@stripe/stripe-js": "^1.54.0",
-<<<<<<< HEAD
         "prism": "^1.0.0",
         "prism-react-renderer": "^2.0.6",
-=======
->>>>>>> 87d3991de416d01ac0531327cb5b6eb67fb55f6b
         "query-string": "^8.1.0",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
