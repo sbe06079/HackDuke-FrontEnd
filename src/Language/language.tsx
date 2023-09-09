@@ -51,7 +51,7 @@ function Language() {
         ))}
       </div>
       <button id="languagesNext" className={selectedLanguage !== null ? "nextGreen" : "next"} onClick={() => {
-        console.log("hi"); //change this
+        window.location.href = "/pythonquestionsall";
       }}>
         Next&nbsp;➔
       </button>
