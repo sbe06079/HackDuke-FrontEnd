@@ -36,7 +36,7 @@ const languages = [
 const title: string[] = ["Select your language", "언어를 선택하십시오", "Wählen Sie Ihre Sprache", "选择语言"];
 let i =0;
 
-function Landing() {
+function Pythonquestions() {
 
     const [selectedLanguage, setSelectedLanguage] = useState(languages[0]);
 
@@ -72,4 +72,4 @@ function Landing() {
     </div>;
 }
 
-export default Landing;
+export default Pythonquestions;

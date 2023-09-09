@@ -39,25 +39,31 @@ let i =0;
 function Landing() {
 
     const [selectedLanguage, setSelectedLanguage] = useState(languages[0]);
+    const [titleState, setTitleState] = useState(title[i]);
+    const [isFading, setIsFading] = useState(false);
 
     const handleChange = (e: any) => {
         setSelectedLanguage(e.target.value);
     };
 
-    const [titleState, setTitleState] = useState(title[i]);
+    
     useEffect(() => {
         const interval = setInterval(() => {
             i++;
-            i = i%3;
-            setTitleState(title[i]);
+            i = i % 3;
+            setIsFading(true); // Trigger fade-in
+            setTimeout(() => {
+                setTitleState(title[i]);
+                setIsFading(false); // Trigger fade-out
+            }, 100); // Adjust the timing to match your CSS transition
         }, 2000);
     }, []);
     
     return <div>
         <img id="logo" src="/FrameLogo2x.png" alt="Frame Logo" />
-        <div className="text" id="title">
-            {titleState}
-        </div>
+        <div className={`text ${isFading ? 'fade' : ''}`} id="title"> {/* Apply the fade class conditionally */}
+                {titleState}
+            </div>
         <div id="selectLang">
             <select className="custom-dropdown" value={selectedLanguage.name} onChange={handleChange}>
                 {languages.map((language, index) => (
