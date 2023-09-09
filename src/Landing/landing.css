@@ -1,0 +1,58 @@
+body {
+    background-color: #27272D;
+}
+
+#logo {
+    position: absolute;
+    top: 41px;
+    left: 47px;
+}
+
+#title {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    margin-top: 33vh;
+}
+
+.text {
+    color: #FAFAFA;
+    text-align: center;
+    font-family: Apple SD Gothic Neo;
+    font-size: 48px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: 2.4px;
+}
+
+#selectLang {
+    display: flex;
+    justify-content: center;
+    margin-top: 46px;
+}
+
+.custom-dropdown {
+    font-family: Apple SD Gothic Neo;
+    border-radius: 4px;
+    border: 1px solid #FAFAFA;
+    padding: 10px 220px 10px 10px;
+    color: white;
+    background-color: transparent; /* Make the background transparent */
+}
+
+.next {
+    position: abosulte;
+    margin-top: 180px;
+    margin-left: 1000px;
+    display: inline-flex;
+    padding: 8px 16px;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    border-radius: 4px;
+    border: 1px solid #8EFFC9;
+    background-color: transparent;
+    color: #8EFFC9;
+}
