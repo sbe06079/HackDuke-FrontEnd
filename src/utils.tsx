@@ -21,7 +21,7 @@ export const askChatGPT = async (prompt: string) => {
     }
 };
 
-export const translateText = async (text: string) => {
+export const translateText = async (text: string, code: string) => {
     try {
         const response = await fetch("/api/deepl", {
             method: "POST",
@@ -30,7 +30,7 @@ export const translateText = async (text: string) => {
             },
             body: JSON.stringify({ 
                 translate: text,
-                target_lang: "FR"
+                target_lang: code
             })
         }).then(v => v.json());
 

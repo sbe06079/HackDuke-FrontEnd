@@ -50,7 +50,7 @@ function Home() {
             {parse(apiMessage)}
 
             <button onClick={async () => {
-                setApiMessage(await translateText("Hi, I am Pascal! Nice to meet you."));
+                setApiMessage(await translateText("Hi, I am Pascal! Nice to meet you.", "FR"));
             }}>
                 Translate with DeepL
             </button>
