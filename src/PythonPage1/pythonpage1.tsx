@@ -3,11 +3,8 @@ import "./pythonpage1.css";
 import { askChatGPT, highlightCodeSnippetWithInputs, translateText } from "../utils";
 import pythonAlgosData from '../../public/pythonAlgos.json';
 import parse from 'html-react-parser';
-<<<<<<< HEAD
 import Modal from 'react-modal';
-=======
 import ReactDOMServer from "react-dom/server";
->>>>>>> 310796124e6dc542e89d8e14486ef2744b3e4585
 
 
 function PythonPage1() {
