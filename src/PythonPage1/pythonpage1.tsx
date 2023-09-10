@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./pythonpage1.css";
-import { askChatGPT, highlightCodeSnippetWithInputs, translateText } from "../utils";
+import { askChatGPT, highlightCodeSnippetWithInputs, highlightCodeSnippetWithInputsWhenPuttingInOnlyThePartAfterTheComment, highlightCodeSnippetWithInputsWhenPuttingInOnlyThePartAfterTheCommentAttemptTWO, translateText } from "../utils";
 import pythonAlgosData from '../../public/pythonAlgos.json';
 import parse from 'html-react-parser';
 import Modal from 'react-modal';
@@ -25,7 +25,7 @@ function PythonPage1() {
     const codingProblem: any = pythonAlgosData.mappings.find(item => item.id === id)?.codeSnippet ?? "NO PROBLEM AVAILABLE";
     const codingTranslate = codingProblem.includes("def") ? codingProblem.split("def")[0] : codingProblem.split("print")[0];
     let codingCode = codingProblem.includes("def") ? "def " + codingProblem.split("def")[1] : "print " + codingProblem.split("print")[1];
-    codingCode = ReactDOMServer.renderToString(highlightCodeSnippetWithInputs(codingCode));
+    codingCode = highlightCodeSnippetWithInputsWhenPuttingInOnlyThePartAfterTheComment(codingCode);
     console.log(codingCode);
     
     const setOpen = () => {setPopupOpen(true);};
