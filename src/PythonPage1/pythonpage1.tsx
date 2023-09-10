@@ -34,7 +34,7 @@ function PythonPage1() {
                 <div className="templateWrapper">
                     <div className="row">
                         <div className="templateCard">What is this code trying to do?</div>
-                        <div className="templateCard">What is the purpose of the indentations in the code?</div>
+                        <div className="templateCard">What is the purpose of the indentations?</div>
                     </div>
                     <div className="row">
                         <div className="templateCard">Is “return” necessary in a Python function?</div>
