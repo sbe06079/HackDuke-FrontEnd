@@ -18,7 +18,7 @@ function PythonPage1() {
     const [question2, setQuestion2] = useState("");
     const [question3, setQuestion3] = useState("");
     const [question4, setQuestion4] = useState("");
-    const [popupOpen, setPopupOpen] = useState(true);
+    const [popupOpen, setPopupOpen] = useState(false);
     const [congrats, setCongrats] = useState(true);
     const [modalHint, setModalHint] = useState("");
     const [modalCongrats, setModalCongrats] = useState("");
@@ -92,6 +92,10 @@ function PythonPage1() {
         }
     }, [speakingLanguage]);
     
+    const setTrue = () => {
+        setCongrats(true);
+        setPopupOpen(true);
+    };
     const getHint = async () => {
         setTranslatedGptText("Generating Response...");
         askChatGPT(hintPrompt)       // change question here
@@ -209,7 +213,7 @@ function PythonPage1() {
                 <p id="funcDescription">{parse(codeTranslate)}</p>
                 <p id="codingCode">{parse(codingCode)}</p>
                 <div className="buttonWrapper">
-                    <button className="next" id="submit">{submitButton}</button>
+                    <button className="next" id="submit" onClick={setTrue}>{submitButton}</button>
                     <button className="next" id="getHint" onClick={getHint}>{hintButton}</button>
                 </div>
             </div>
