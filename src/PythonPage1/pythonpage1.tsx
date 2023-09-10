@@ -20,6 +20,8 @@ function PythonPage1() {
             .catch(err => console.log(err));
     };
 
+    const [answer, setAnswer] = useState(null);
+
     return <div>
         <div className="header">
             <img id="logo" src="/FrameLogo.png" alt="Frame Logo" />;
@@ -31,9 +33,8 @@ function PythonPage1() {
         <div className="pythonContainer">
             <div className="questionBox">
                 <p id="elementsTitle"><span className="removeGreen">Remove</span> Elements</p>
-                <button onClick={getHint}>Get hint</button>
+                <button>Get hint</button>
             </div>
-            <div className="questionBox"></div>
         </div>
         <div>{translatedGptText}</div>
     </div>;
