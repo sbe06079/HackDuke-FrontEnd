@@ -56,7 +56,7 @@ function PythonQuestionsAll() {
       
         const handleClick = (id: number) => () => {
           console.log(`Element ${id} clicked`);
-          window.location.href = `pythonpage${id}`;
+          window.location.href = `pythonpage${id}?lang=${speakingLanguage}`;
         };
       
         // Attach event listeners after the specified delay
