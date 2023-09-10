@@ -29,7 +29,7 @@ function PythonPage1() {
     const codingProblem: any = pythonAlgosData.mappings.find(item => item.id === id)?.codeSnippet ?? "NO PROBLEM AVAILABLE";
     const codingTitle: any = pythonAlgosData.mappings.find(item => item.id === id)?.algoName ?? "NO PROBLEM AVAILABLE";
     const codingTranslate = codingProblem.includes("def") ? codingProblem.split("def")[0] : codingProblem.split("print")[0];
-    let code = codingProblem.includes("def") ? "def " + codingProblem.split("def")[1] : "print " + codingProblem.split("print")[1];
+    let code:any = codingProblem.includes("def") ? "def " + codingProblem.split("def")[1] : "print " + codingProblem.split("print")[1];
     code = highlightCodeSnippetWithInputsWhenPuttingInOnlyThePartAfterTheCommentAttemptLINEBYLINE(code);
     const [codingCode, setCodingCode] = useState(code);
     console.log(codingCode);

@@ -322,6 +322,10 @@ export function highlightCodeSnippetWithInputsWhenPuttingInOnlyThePartAfterTheCo
       return highlightedText.join('');
   }
   
+
+
+
+
   export function highlightCodeSnippetWithInputsWhenPuttingInOnlyThePartAfterTheCommentAttemptLINEBYLINE(codeSnippet: string) {
     // Tokenize and highlight specific keywords in different colors
     const elements = codeSnippet.split('<br/>');
@@ -336,6 +340,8 @@ export function highlightCodeSnippetWithInputsWhenPuttingInOnlyThePartAfterTheCo
     
     */
     const finalElements: string[] = [];
+
+    
 
     
 
@@ -362,7 +368,7 @@ export function highlightCodeSnippetWithInputsWhenPuttingInOnlyThePartAfterTheCo
         if (['val', 'nums', 'removeElement', 'sum', 'greet', 'return', 'int'].includes(word)) {
           const ans = ['val', 'nums', 'removeElement', 'sum', 'greet', 'return', 'int'].find(possibleWord => word.includes(possibleWord));
           const randomNumber = Math.random();
-          return randomNumber <= 0.75
+          return randomNumber <= 0.5
               ? `<input type="text" style="color: black" placeholder="${''}" data-answer="${ans || 'Error'}"/>`
               : `<span style="color: ${color}">${ans || word}</span>`;
       }
