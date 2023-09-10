@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import "./pythonpage1.css";
-import { askChatGPT, translateText } from "../utils";
+import { askChatGPT, highlightCodeSnippetWithInputs, translateText } from "../utils";
 import pythonAlgosData from '../../public/pythonAlgos.json';
 import parse from 'html-react-parser';
+import ReactDOMServer from "react-dom/server";
 
 
 function PythonPage1() {
@@ -20,7 +21,9 @@ function PythonPage1() {
     const id = Number(urlParams.get("id")?.toString());
     const codingProblem: any = pythonAlgosData.mappings.find(item => item.id === id)?.codeSnippet ?? "NO PROBLEM AVAILABLE";
     const codingTranslate = codingProblem.includes("def") ? codingProblem.split("def")[0] : codingProblem.split("print")[0];
-    const codingCode = codingProblem.includes("def") ? "def " + codingProblem.split("def")[1] : "print " + codingProblem.split("print")[1];
+    let codingCode = codingProblem.includes("def") ? "def " + codingProblem.split("def")[1] : "print " + codingProblem.split("print")[1];
+    codingCode = ReactDOMServer.renderToString(highlightCodeSnippetWithInputs(codingCode));
+    console.log(codingCode);
     
     useEffect(() => {
         if (speakingLanguage !== "EN") {
@@ -68,7 +71,6 @@ function PythonPage1() {
                 })
             .catch(err => console.log(err));
     };
-    console.log(codeTranslate);
 
     return <div>
         <div className="header">
@@ -82,7 +84,7 @@ function PythonPage1() {
             <div className="questionBox">
                 <p id="elementsTitle"><span className="removeGreen">Remove</span> Elements</p>
                 <p id="funcDescription">{parse(codeTranslate)}</p>
-                <p>{parse(codingCode)}</p>
+                <p id="codingCode">{parse(codingCode)}</p>
                 <div className="buttonWrapper">
                     <button className="next" id="submit">Submit</button>
                     <button className="next" id="getHint" onClick={getHint}>Get hint</button>
