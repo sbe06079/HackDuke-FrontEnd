@@ -3,6 +3,7 @@ import "./pythonpage1.css";
 import { askChatGPT, translateText } from "../utils";
 import pythonAlgosData from '../../public/pythonAlgos.json';
 import parse from 'html-react-parser';
+import Modal from 'react-modal';
 
 
 function PythonPage1() {
@@ -16,12 +17,17 @@ function PythonPage1() {
     const [question2, setQuestion2] = useState("");
     const [question3, setQuestion3] = useState("");
     const [question4, setQuestion4] = useState("");
+    const [popupOpen, setPopupOpen] = useState(true);
 
     const id = Number(urlParams.get("id")?.toString());
     const codingProblem: any = pythonAlgosData.mappings.find(item => item.id === id)?.codeSnippet ?? "NO PROBLEM AVAILABLE";
     const codingTranslate = codingProblem.includes("def") ? codingProblem.split("def")[0] : codingProblem.split("print")[0];
     const codingCode = codingProblem.includes("def") ? "def " + codingProblem.split("def")[1] : "print " + codingProblem.split("print")[1];
     
+    const setOpen = () => {setPopupOpen(true);};
+    const setClose = () => {setPopupOpen(false);};
+
+
     useEffect(() => {
         if (speakingLanguage !== "EN") {
             translateText(codingTranslate, speakingLanguage)
@@ -78,6 +84,13 @@ function PythonPage1() {
                 <div className="text">Python</div>
             </div>
         </div>
+        <Modal className="verificationPopup" isOpen={popupOpen} onRequestClose={setClose} ariaHideApp={false} style={{
+                    overlay: {
+                    }}}>
+                    <div className="popupTitle">Continue to Payment</div>
+                    <div className="popupText">Thank you for registering. You will be able to access the member portal once you complete payment.</div>
+                    <button className="popupOKButton" onClick={() => {setClose;}}>Ok</button>
+        </Modal>
         <div className="pythonContainer">
             <div className="questionBox">
                 <p id="elementsTitle"><span className="removeGreen">Remove</span> Elements</p>
