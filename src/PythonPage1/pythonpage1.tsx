@@ -59,8 +59,9 @@ function PythonPage1() {
                     </div>
                 </div>
             </div>
-            <div className="questionBox"></div>
         </div>
         <div>{translatedGptText}</div>
     </div>;
 }
+
+export default PythonPage1;
