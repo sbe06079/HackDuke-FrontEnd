@@ -5,6 +5,7 @@ import Landing from "./Landing";
 import Language from "./Language";
 import Pythonquestions from "./Pythonquestions";
 import PythonQuestionsAll from "./PythonQuestionsAll";
+import PythonPage1 from "./PythonPage1";
 
 /**
  * @param p pathname
@@ -21,7 +22,8 @@ const router = createBrowserRouter([
     makeRoute("/", <Landing/>),
     makeRoute("/language", <Language/>),
     makeRoute("/pythonquestions", <Pythonquestions/>),
-    makeRoute("/pythonquestionsall", <PythonQuestionsAll/>)
+    makeRoute("/pythonquestionsall", <PythonQuestionsAll/>),
+    makeRoute("/pythonpage1", <PythonPage1/>)
 ]);
 
 function SiteRouter() {
