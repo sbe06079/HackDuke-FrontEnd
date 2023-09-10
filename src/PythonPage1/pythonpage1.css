@@ -33,6 +33,7 @@
     color: #8EFFC9;
     border-color: #8EFFC9;
     margin: 0px;
+    cursor: pointer;
 }
 
 .buttonWrapper {
@@ -45,6 +46,7 @@
     border-color: #8EFFC9;
     margin: 0px;
     background-color: #8EFFC9;
+    cursor: pointer;
 }
 
 #textContainer {
@@ -80,4 +82,14 @@
     flex-direction: row;
     justify-content: center;
     gap: 20px;
+}
+
+#funcDescription {
+    color: #B28E7A;
+    font-family: Apple SD Gothic Neo;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: 0.9px;
 }

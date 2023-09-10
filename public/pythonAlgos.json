@@ -3,17 +3,17 @@
         {
             "id": 1,
             "algoName": "sumABandC",
-            "codeSnippet": "'''\nThe below function, sum, should add the three integers inserted as inputs to the function and return the sum.\n\nExample usage:\nsum(1,3,9) should return 13.\n'''\n\ndef sum(a, b, c):\n  total = 0\n  total = a + b + c\n  return total"
+            "codeSnippet": "'''<br/>The below function, sum, should add the three integers inserted as inputs to the function and return the sum.<br/><br/>Example usage:<br/>nsum(1,3,9) should return 13.<br/>'''<br/><br/>def sum(a, b, c):<br/>  total = 0<br/>  total = a + b + c<br/>  return total"
         },
         {
             "id": 2,
             "algoName": "greet",
-            "codeSnippet": "'''\nThe below function, greet, should print the String that is inserted as input to the function.\n\nExample usage:\ngreet(‘Hello world!’) should print 'Hello world!’.\n'''\n\ndef greet(string):\n  print(string)\n\nstring_hi = 'Hello world!'\ngreet(string_hi)"
+            "codeSnippet": "'''<br/>The below function, greet, should print the String that is inserted as input to the function.<br/><br/>Example usage:<br/>ngreet(‘Hello world!’) should print 'Hello world!’.<br/>'''<br/>def greet(string):<br/>  print(string)<br/><br/>string_hi = 'Hello world!'<br/>greet(string_hi)"
         },
         {
             "id": 3,
             "algoName": "removeElement",
-            "codeSnippet": "'''\nThe below function, removeElement, should remove all occurrences of val from nums\n\nExample usage:\nnumber_list = [1,2,3,4,5,5]\nvalue = 5\n\nOnce removeElement is run, number_list would be [1,2,3,4] and removeElement would return 4\n'''\n\ndef removeElement(nums: List[int], val: int) -> int:\n  while val in nums:\n    nums.remove(val)\n  return removeElement(nums)"
+            "codeSnippet": "'''<br/>The below function, removeElement, should remove all occurrences of val from nums<br/><br/>Example usage:<br/>number_list = [1,2,3,4,5,5]<br/>value = 5<br/><br/>Once removeElement is run, number_list would be [1,2,3,4] and removeElement would return 4<br/>'''<br/><br/>def removeElement(nums: List[int], val: int) -> int:<br/>  while val in nums:<br/>    nums.remove(val)<br/>  return removeElement(nums)"
         }
     ]
 }

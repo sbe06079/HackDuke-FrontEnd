@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./pythonpage1.css";
 import { askChatGPT, translateText } from "../utils";
 import pythonAlgosData from '../../public/pythonAlgos.json';
+import parse from 'html-react-parser';
 
 
 function PythonPage1() {
@@ -11,6 +12,10 @@ function PythonPage1() {
     const [gptText, setGptText] = useState("");
     const [translatedGptText, setTranslatedGptText] = useState("");
     const [codeTranslate, setCodeTranslate] = useState("");
+    const [question1, setQuestion1] = useState("");
+    const [question2, setQuestion2] = useState("");
+    const [question3, setQuestion3] = useState("");
+    const [question4, setQuestion4] = useState("");
 
     const id = Number(urlParams.get("id")?.toString());
     const codingProblem: any = pythonAlgosData.mappings.find(item => item.id === id)?.codeSnippet ?? "NO PROBLEM AVAILABLE";
@@ -18,7 +23,6 @@ function PythonPage1() {
     const codingCode = codingProblem.includes("def") ? "def " + codingProblem.split("def")[1] : "print " + codingProblem.split("print")[1];
     
     useEffect(() => {
-        const delay = 1000;
         if (speakingLanguage !== "EN") {
             translateText(codingTranslate, speakingLanguage)
                 .then(response => setCodeTranslate(response))
@@ -26,12 +30,27 @@ function PythonPage1() {
             translateText("Next question? Ask away!", speakingLanguage)
                 .then(response => setTranslatedGptText(response))
                 .catch(err => console.log(err));
+            translateText("What is this code trying to do?", speakingLanguage)
+                .then(response => setQuestion1(response))
+                .catch(err => console.log(err));
+            translateText("What is the purpose of the indentations?", speakingLanguage)
+                .then(response => setQuestion2(response))
+                .catch(err => console.log(err));
+            translateText("Is “return” necessary in a Python function?", speakingLanguage)
+                .then(response => setQuestion3(response))
+                .catch(err => console.log(err));
+            translateText("What if this function has more inputs?", speakingLanguage)
+                .then(response => setQuestion4(response))
+                .catch(err => console.log(err));
         } else {
             setCodeTranslate(codingTranslate);
             setTranslatedGptText("Next question? Ask away!");
+            setQuestion1("What is this code trying to do?");
+            setQuestion2("What is the purpose of the indentations?");
+            setQuestion3("Is “return” necessary in a Python function?");
+            setQuestion4("What if this function has more inputs?");
         }
     }, [speakingLanguage]);
-    const [answer, setAnswer] = useState(null);
     
     const getHint = async () => {
         askChatGPT("What is 1 + 1?")       // change question here
@@ -49,6 +68,7 @@ function PythonPage1() {
                 })
             .catch(err => console.log(err));
     };
+    console.log(codeTranslate);
 
     return <div>
         <div className="header">
@@ -61,34 +81,26 @@ function PythonPage1() {
         <div className="pythonContainer">
             <div className="questionBox">
                 <p id="elementsTitle"><span className="removeGreen">Remove</span> Elements</p>
-                <p>{codeTranslate}</p>
-                <p>{codingCode}</p>
-                <p>{translatedGptText}</p>
-                <button onClick={getHint}>Get hint</button>
-                GPT RESPONSE HERE
+                <p id="funcDescription">{parse(codeTranslate)}</p>
+                <p>{parse(codingCode)}</p>
                 <div className="buttonWrapper">
                     <button className="next" id="submit">Submit</button>
-                    <button className="next" id="getHint">Get hint</button>
+                    <button className="next" id="getHint" onClick={getHint}>Get hint</button>
                 </div>
             </div>
             <div className="questionBox">
                 <p id="elementsTitle"><span className="removeGreen">Codelingo</span>GPT</p>
-                {!answer ? 
-                    (<div id="textContainer">
-                        <p>Have a question?</p>
-                        <p>Ask away!</p>
-                    </div>
-                    ) :
-                    (<div>GPT response</div>)
-                }
+                <div id="textContainer">
+                    <p>{translatedGptText}?</p>
+                </div>
                 <div className="templateWrapper">
                     <div className="row">
-                        <div className="templateCard">What is this code trying to do?</div>
-                        <div className="templateCard">What is the purpose of the indentations?</div>
+                        <div className="templateCard">{question1}</div>
+                        <div className="templateCard">{question2}</div>
                     </div>
                     <div className="row">
-                        <div className="templateCard">Is “return” necessary in a Python function?</div>
-                        <div className="templateCard">What if this function has more inputs?</div>
+                        <div className="templateCard">{question3}</div>
+                        <div className="templateCard">{question4}</div>
                     </div>
                 </div>
             </div>

@@ -3,7 +3,6 @@ import ReactDOMServer from "react-dom/server";
 import "./pythonquestionsall.css";
 import Question from "./question";
 import { translatePage } from "../utils";
-import parse from 'html-react-parser';
 
 const row1 = [
     { greenTitle: "Add", title: "Integers", purple: "sum", description: "should add the three integers inserted as inputs to the function and return the sum.", example: "(1,3,9) should return 13.", id: "1" },
