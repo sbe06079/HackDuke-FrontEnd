@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 export const askChatGPT = async (prompt: string) => {
     try {
@@ -128,8 +128,29 @@ export function highlightCodeSnippet(codeSnippet: string) {
       );
   }
 
+
 export function highlightCodeSnippetWithInputs(codeSnippet: string) {
-    const parts = codeSnippet.split("'''");
+  const parts = codeSnippet.split("'''");
+  // const prompt = "Give me a few keywords that start after the word def in this prompt: " + codeSnippet +" \n just give me a list of words separated by spaces and no commas.I just want a list of words, it is very important you do not give me anything else. Select ";
+  
+  //const [keywords, setKeywords] = useState<string | null>(null);
+
+  // useEffect(() => {
+  //   // Call the asynchronous function within the useEffect
+  //   async function fetchData() {
+  //     try {
+  //       const result = await askChatGPT(prompt);
+  //       setKeywords(result);
+  //     } catch (err) {
+  //       console.error(err);
+  //       setKeywords("API Error!");
+  //     }
+  //   }
+
+  //   fetchData(); // Call the fetchData function
+  // }, []); // useEffect will run whenever the 'prompt' changes
+
+  // console.log(keywords);
   
     const highlightedParts = parts.map((part, index) => {
       if (index % 2 === 1) {
@@ -160,15 +181,25 @@ export function highlightCodeSnippetWithInputs(codeSnippet: string) {
           const color = keywordsToHighlight[word as keyof typeof keywordsToHighlight] || 'white';
   
           // Replace specific words with input elements
-          if (['val', 'nums', 'removeElement'].includes(word)) {
-            return (
+          //if (keywords?.split(" ").includes(word)) {
+          if(['val', 'nums', 'removeElement', 'sum'].includes(word)) {
+            const ans = ['val', 'nums', 'removeElement', 'sum'].find(possibleWord => word.includes(possibleWord));
+            const randomNumber = Math.random();
+            return randomNumber <= 0.25 ?
+            (
               <input
                 key={wordIndex}
                 type="text"
                 style={{ color }}
-                placeholder={word}
+                placeholder={""}
+                data-answer = {ans || "Error"}
                 // Handle input change here if needed
               />
+            ) :
+            (
+              <span key={wordIndex} style={{ color }}>
+                {ans}
+              </span>
             );
           }
   
