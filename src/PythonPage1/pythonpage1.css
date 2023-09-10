@@ -93,3 +93,21 @@
     line-height: normal;
     letter-spacing: 0.9px;
 }
+
+.popup {
+    width: 409px;
+    height: 210px;
+    border-radius: 8px;
+    background: rgba(250, 250, 250, 0.85);
+}
+
+.modalText {
+    color: #0F0F0F;
+    font-family: Apple SD Gothic Neo;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: 0.9px;
+    margin: 50px 15px 0px 20px;
+}
