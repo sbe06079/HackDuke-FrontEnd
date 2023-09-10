@@ -31,10 +31,16 @@ function PythonPage1() {
                     ) :
                     (<div>GPT response</div>)
                 }
-            </div>
-            <div className="templateWrapper">
-                <div className="topRow"></div>
-                <div className="bottomRow"></div>
+                <div className="templateWrapper">
+                    <div className="row">
+                        <div className="templateCard">What is this code trying to do?</div>
+                        <div className="templateCard">What is the purpose of the indentations in the code?</div>
+                    </div>
+                    <div className="row">
+                        <div className="templateCard">Is “return” necessary in a Python function?</div>
+                        <div className="templateCard">What if this function has more inputs?</div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>;
