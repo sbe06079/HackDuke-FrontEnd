@@ -2,10 +2,10 @@ import React from "react";
 import "./question.css";
 
 function Question(props: any) {
-    const { greenTitle, title, purple, description, example } = props;
+    const { greenTitle, title, purple, description, example, id } = props;
 
     return (
-        <div className="questionCard">
+        <div className="questionCard" id={id}>
             <div className="questionTitle">
                 <p id="greenTitle" className="questionText">{greenTitle}</p>
                 <p id="regularTitle" className="questionText">{title}</p>

@@ -62,7 +62,7 @@ function Home() {
             </button>
 
             <button onClick={async () => { // should input a webpage
-                setHtmlCode(await translatePage(ReactDOMServer.renderToString(<div className="text">Hi, I am Pascal! Nice to meet you.</div>)));
+                setHtmlCode(await translatePage(ReactDOMServer.renderToString(<div className="text">Hi, I am Pascal! Nice to meet you.</div>), "FR"));
             }}>
                 Translate Page with DeepL
             </button>
