@@ -23,10 +23,13 @@ function PythonPage1() {
     const id = Number(urlParams.get("id")?.toString());
     const codingProblem: any = pythonAlgosData.mappings.find(item => item.id === id)?.codeSnippet ?? "NO PROBLEM AVAILABLE";
     const codingTranslate = codingProblem.includes("def") ? codingProblem.split("def")[0] : codingProblem.split("print")[0];
-    let codingCode = codingProblem.includes("def") ? "def " + codingProblem.split("def")[1] : "print " + codingProblem.split("print")[1];
-    codingCode = ReactDOMServer.renderToString(highlightCodeSnippetWithInputs(codingCode));
+    const code = codingProblem.includes("def") ? "def " + codingProblem.split("def")[1] : "print " + codingProblem.split("print")[1];
+    //codingCode = ReactDOMServer.renderToString(highlightCodeSnippetWithInputs(codingCode));
+    const [codingCode, setCodingCode] = useState(code);
+
     console.log(codingCode);
-    
+    const hintPrompt = "Below is a simple Python problem where a few keywords are blurred out so they can learn by filling in the blank. Regardless of which buttons will be blurred out, what would be a good hint for the student? Ideally, the hint would give one or two sentences on what the code intends to do and maybe another sentence or two on typical things to consider when trying to understand that specific type of function. Give me the hint itself only, without quotes because this will be pasted directly from your answer to another site. " + codingCode;
+
     const setOpen = () => {setPopupOpen(true);};
     const setClose = () => {setPopupOpen(false);};
 
@@ -62,7 +65,8 @@ function PythonPage1() {
     }, [speakingLanguage]);
     
     const getHint = async () => {
-        askChatGPT("What is 1 + 1?")       // change question here
+        setTranslatedGptText("Loading...");
+        askChatGPT(hintPrompt)       // change question here
             .then(response => {
                     setGptText(response);
                     if (speakingLanguage !== "EN") {
@@ -106,16 +110,16 @@ function PythonPage1() {
             <div className="questionBox">
                 <p id="elementsTitle"><span className="removeGreen">Codelingo</span>GPT</p>
                 <div id="textContainer">
-                    <p>{translatedGptText}?</p>
+                    <p>{translatedGptText}</p>
                 </div>
                 <div className="templateWrapper">
                     <div className="row">
-                        <div className="templateCard">{question1}</div>
-                        <div className="templateCard">{question2}</div>
+                        <div className="templateCard" onClick={getHint}>{question1}</div>
+                        <div className="templateCard" onClick={getHint}>{question2}</div>
                     </div>
                     <div className="row">
-                        <div className="templateCard">{question3}</div>
-                        <div className="templateCard">{question4}</div>
+                        <div className="templateCard" onClick={getHint}>{question3}</div>
+                        <div className="templateCard" onClick={getHint}>{question4}</div>
                     </div>
                 </div>
             </div>
