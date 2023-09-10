@@ -185,7 +185,7 @@ export function highlightCodeSnippetWithInputs(codeSnippet: string) {
           if(['val', 'nums', 'removeElement', 'sum'].includes(word)) {
             const ans = ['val', 'nums', 'removeElement', 'sum'].find(possibleWord => word.includes(possibleWord));
             const randomNumber = Math.random();
-            return randomNumber <= 0.25 ?
+            return randomNumber <= 0.75 ?
             (
               <input
                 key={wordIndex}
@@ -272,7 +272,7 @@ export function highlightCodeSnippetWithInputs(codeSnippet: string) {
 
 
 
-    export function highlightCodeSnippetWithInputsWhenPuttingInOnlyThePartAfterTheCommentAttemptTWO(codeSnippet: string) {
+export function highlightCodeSnippetWithInputsWhenPuttingInOnlyThePartAfterTheCommentAttemptTWO(codeSnippet: string) {
       // Tokenize and highlight specific keywords in different colors
   
       const keywordsToHighlight = {
@@ -322,3 +322,68 @@ export function highlightCodeSnippetWithInputs(codeSnippet: string) {
       return highlightedText.join('');
   }
   
+  export function highlightCodeSnippetWithInputsWhenPuttingInOnlyThePartAfterTheCommentAttemptLINEBYLINE(codeSnippet: string) {
+    // Tokenize and highlight specific keywords in different colors
+    const elements = codeSnippet.split('<br/>');
+    const cleanedElements = elements.map(element => element.replace(/&nbsp;/g, ' '));
+    /*
+    const cleanedElements = [
+      "def removeElement(nums: List[int], val: int) -> int:",
+      "    while val in nums:",
+      "        nums.remove(val)",
+      "    return removeElement(nums)"
+    ];
+    
+    */
+    const finalElements: string[] = [];
+
+    
+
+    
+
+
+    for (const lineItem of cleanedElements) {
+      const keywordsToHighlight = {
+        'int': 'rgb(113, 197, 177)',
+        'def': 'rgb(102, 134, 178)',
+        'in': 'rgb(93, 136, 183)',
+        'while': 'rgb(179, 130, 180)',
+        'return': 'rgb(159, 123, 165)',
+        'print': 'rgb(179, 130, 180)',
+        'removeElement': 'rgb(142, 255, 201)', // Highlight 'removeElement' in green
+        'greet': 'rgb(142, 255, 201)', // Highlight 'greet' in green
+        'sum': 'rgb(142, 255, 201)', // Highlight 'sum' in green
+      };
+
+      const words = lineItem.split(" ");
+      const highlightedLine = words.map(word => {
+        const color = (keywordsToHighlight[word as keyof typeof keywordsToHighlight]) || 'white';
+        // Rest of your code...
+        if (['val', 'nums', 'removeElement', 'sum', 'greet', 'return', 'int'].includes(word)) {
+          const ans = ['val', 'nums', 'removeElement', 'sum', 'greet', 'return', 'int'].find(possibleWord => word.includes(possibleWord));
+          const randomNumber = Math.random();
+          return randomNumber <= 0.75
+              ? `<input type="text" style="color: black" placeholder="${''}" data-answer="${ans || 'Error'}"/>`
+              : `<span style="color: ${color}">${ans || word}</span>`;
+      }
+
+      return `<span style="color: ${color}">${word}</span>`;
+
+      }).join(' ');
+
+
+      finalElements.push(highlightedLine); 
+      
+
+
+
+    
+
+    
+  }
+  const joinedCode = finalElements.join('<br/>');
+
+      console.log("joined code: "+ joinedCode);
+
+      return joinedCode;
+}
