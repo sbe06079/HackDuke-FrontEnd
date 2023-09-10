@@ -43,35 +43,37 @@ function PythonQuestionsAll() {
     }, [speakingLanguage]);
 
     useEffect(() => {
-        const delay = 1000; // 1 seconds (2000 milliseconds)
-
-        const timerId = setTimeout(() => {
-
-            const handleClick = () => {
-                console.log("handle click");
-                window.location.href = "/";
-            };
-
-            const element = document.getElementById('1');
-            console.log(element);
+        const delay = 1000; // 1 second (1000 milliseconds)
+      
+        const attachEventListeners = () => {
+          for (let i = 1; i <= 9; i++) {
+            const element = document.getElementById(String(i));
             if (element) {
-                element.addEventListener('click', handleClick);
+              element.addEventListener('click', handleClick(i));
             }
-
-            // Cleanup the event listener when the component unmounts
-            return () => {
-                if (element) {
-                    element.removeEventListener('click', handleClick);
-                }
-            };
-        }, delay);
-
-        // Clear the timeout in case the component unmounts before the delay
-        return () => {
-            clearTimeout(timerId);
+          }
         };
-    }, [speakingLanguage]);
-
+      
+        const handleClick = (id: number) => () => {
+          console.log(`Element ${id} clicked`);
+          window.location.href = `pythonpage${id}`;
+        };
+      
+        // Attach event listeners after the specified delay
+        const timerId = setTimeout(attachEventListeners, delay);
+      
+        // Cleanup the event listeners when the component unmounts
+        /*return () => {
+          clearTimeout(timerId);
+          for (let i = 1; i <= 9; i++) {
+            const element = document.getElementById(String(i));
+            if (element) {
+              element.removeEventListener('click', handleClick(i));
+            }
+          }
+        };*/
+      }, []);
+    
     const page = <div>
         <div className="header">
             <img id="logo" src="/FrameLogo.png" alt="Frame Logo" />;
