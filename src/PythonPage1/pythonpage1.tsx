@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./pythonpage1.css";
-import { askChatGPT, highlightCodeSnippetWithInputs, highlightCodeSnippetWithInputsWhenPuttingInOnlyThePartAfterTheComment, highlightCodeSnippetWithInputsWhenPuttingInOnlyThePartAfterTheCommentAttemptTWO, translateText } from "../utils";
+import { askChatGPT, highlightCodeSnippetWithInputs, highlightCodeSnippetWithInputsWhenPuttingInOnlyThePartAfterTheComment, highlightCodeSnippetWithInputsWhenPuttingInOnlyThePartAfterTheCommentAttemptLINEBYLINE, highlightCodeSnippetWithInputsWhenPuttingInOnlyThePartAfterTheCommentAttemptTWO, translateText } from "../utils";
 import pythonAlgosData from '../../public/pythonAlgos.json';
 import parse from 'html-react-parser';
 import Modal from 'react-modal';
@@ -24,8 +24,8 @@ function PythonPage1() {
     const id = Number(urlParams.get("id")?.toString());
     const codingProblem: any = pythonAlgosData.mappings.find(item => item.id === id)?.codeSnippet ?? "NO PROBLEM AVAILABLE";
     const codingTranslate = codingProblem.includes("def") ? codingProblem.split("def")[0] : codingProblem.split("print")[0];
-    let code = codingProblem.includes("def") ? "def " + codingProblem.split("def")[1] : "print " + codingProblem.split("print")[1];
-    code = highlightCodeSnippetWithInputsWhenPuttingInOnlyThePartAfterTheComment(code);
+    let code:any = codingProblem.includes("def") ? "def " + codingProblem.split("def")[1] : "print " + codingProblem.split("print")[1];
+    code = highlightCodeSnippetWithInputsWhenPuttingInOnlyThePartAfterTheCommentAttemptLINEBYLINE(code);
     const [codingCode, setCodingCode] = useState(code);
     console.log(codingCode);
 
