@@ -1,16 +1,16 @@
 .pythonContainer {
-    gap: 100px;
+    gap: 70px;
     margin-top: -30px;
     display: flex;
     justify-content: center;
-    height: 400px;
+    height: 600px;
 }
 
 .questionBox {
     border-radius: 8px;
     background: #505054;
-    height: 380px;
-    width: 400px;
+    height: 500px;
+    width: 450px;
     padding: 7px 30px 30px 30px;
     font-family: Apple SD Gothic Neo;
 }
@@ -27,4 +27,33 @@
     line-height: normal;
     letter-spacing: 1.65px;
     margin-top: 15px;
+}
+
+#getHint {
+    color: #8EFFC9;
+    border-color: #8EFFC9;
+    margin: 0px;
+}
+
+.buttonWrapper {
+    display: flex;
+    gap: 40px;
+}
+
+#submit {
+    color: #505054;
+    border-color: #8EFFC9;
+    margin: 0px;
+    background-color: #8EFFC9;
+}
+
+#textContainer {
+    margin-top: 55px;
+    text-align: center;
+    color: rgba(250, 250, 250, 0.70);
+    font-size: 18px;
+}
+
+.templateWrapper {
+
 }
