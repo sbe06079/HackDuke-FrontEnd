@@ -10,7 +10,13 @@ function PythonPage1() {
                 <div className="text">Python</div>
             </div>
         </div>
-        <div className="pythonContainer"></div>
+        <div className="pythonContainer">
+            <div className="questionBox">
+                <p id="elementsTitle"><span className="removeGreen">Remove</span> Elements</p>
+                <button>Get hint</button>
+            </div>
+            <div className="questionBox"></div>
+        </div>
     </div>;
 }
 
