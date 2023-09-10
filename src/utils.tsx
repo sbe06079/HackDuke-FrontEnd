@@ -166,14 +166,14 @@ export function highlightCodeSnippetWithInputs(codeSnippet: string) {
         // Tokenize and highlight specific keywords in different colors
         const keywordsToHighlight = {
           'int': 'rgb(113, 197, 177)',
-          'def': 'rgb(93, 136, 183)',
+          'def': 'rgb(102, 134, 178)',
           'in': 'rgb(93, 136, 183)',
           'while': 'rgb(179, 130, 180)',
-          'return': 'rgb(179, 130, 180)',
+          'return': 'rgb(159, 123, 165)',
           'print': 'rgb(179, 130, 180)',
-          'removeElement': 'green', // Highlight 'removeElement' in green
-          'greet': 'green', // Highlight 'greet' in green
-          'sum': 'green', // Highlight 'sum' in green
+          'removeElement': 'rgb(142, 255, 201)', // Highlight 'removeElement' in green
+          'greet': 'rgb(142, 255, 201)', // Highlight 'greet' in green
+          'sum': 'rgb(142, 255, 201)', // Highlight 'sum' in green
         };
         const tokenizedPart = part.split(/\b/); // Tokenize by word boundaries
   
@@ -223,5 +223,102 @@ export function highlightCodeSnippetWithInputs(codeSnippet: string) {
         {highlightedParts}
       </pre>
     );
+  }
+  
+
+
+  export function highlightCodeSnippetWithInputsWhenPuttingInOnlyThePartAfterTheComment(codeSnippet: string) {
+          // Tokenize and highlight specific keywords in different colors
+
+          codeSnippet = codeSnippet.replace(/<br\s*\/?>/gi, '\n').replace(/&nbsp;/gi, ' ');
+
+
+          const keywordsToHighlight = {
+            'int': 'rgb(113, 197, 177)',
+            'def': 'rgb(102, 134, 178)',
+            'in': 'rgb(93, 136, 183)',
+            'while': 'rgb(179, 130, 180)',
+            'return': 'rgb(159, 123, 165)',
+            'print': 'rgb(179, 130, 180)',
+            'removeElement': 'rgb(142, 255, 201)', // Highlight 'removeElement' in green
+            'greet': 'rgb(142, 255, 201)', // Highlight 'greet' in green
+            'sum': 'rgb(142, 255, 201)', // Highlight 'sum' in green
+          };
+          const tokenizedPart = codeSnippet.split(/\b/); // Tokenize by word boundaries
+    
+          const highlightedText = tokenizedPart.map((word, wordIndex) => {
+            const color = keywordsToHighlight[word as keyof typeof keywordsToHighlight] || 'white';
+    
+            // Replace specific words with input elements
+            //if (keywords?.split(" ").includes(word)) {
+            if(['val', 'nums', 'removeElement', 'sum', 'greet', 'return', 'int'].includes(word)) {
+              const ans = ['val', 'nums', 'removeElement', 'sum', 'greet', 'return', 'int'].find(possibleWord => word.includes(possibleWord));
+              const randomNumber = Math.random();
+              return randomNumber <= 0.25
+        ? `<input type="text" style="color: ${color}" placeholder="${ans || 'Error'}" data-answer="${ans || 'Error'}"/>`
+        : `<span style="color: ${color}">${ans || word}</span>`;
+            }
+    
+            return `<span style="color: ${color}">${word}</span>`;
+          });
+    
+          return highlightedText.join('');
+        
+      
+    
+      
+    }
+
+
+
+
+    export function highlightCodeSnippetWithInputsWhenPuttingInOnlyThePartAfterTheCommentAttemptTWO(codeSnippet: string) {
+      // Tokenize and highlight specific keywords in different colors
+  
+      const keywordsToHighlight = {
+          'int': 'rgb(113, 197, 177)',
+          'def': 'rgb(102, 134, 178)',
+          'in': 'rgb(93, 136, 183)',
+          'while': 'rgb(179, 130, 180)',
+          'return': 'rgb(159, 123, 165)',
+          'print': 'rgb(179, 130, 180)',
+          'removeElement': 'rgb(142, 255, 201)', // Highlight 'removeElement' in green
+          'greet': 'rgb(142, 255, 201)', // Highlight 'greet' in green
+          'sum': 'rgb(142, 255, 201)', // Highlight 'sum' in green
+      };
+  
+      // Split the code snippet by lines
+      const lines = codeSnippet.split('\n');
+  
+      const highlightedText = lines.map((line, lineIndex) => {
+          // Indentation handling
+          const leadingSpaces = line.match(/^\s*/)?.[0] || '';
+          
+          // Split the line by word boundaries
+          const tokenizedPart = line.split(/\b/);
+  
+          const highlightedLine = tokenizedPart.map((word, wordIndex) => {
+              const color = keywordsToHighlight[word as keyof typeof keywordsToHighlight] || 'white';
+  
+              // Replace specific words with input elements
+              if (['val', 'nums', 'removeElement', 'sum', 'greet', 'return', 'int'].includes(word)) {
+                  const ans = ['val', 'nums', 'removeElement', 'sum', 'greet', 'return', 'int'].find(possibleWord => word.includes(possibleWord));
+                  const randomNumber = Math.random();
+                  return randomNumber <= 0.25
+                      ? `<input type="text" style="color: ${color}" placeholder="${ans || 'Error'}" data-answer="${ans || 'Error'}"/>`
+                      : `<span style="color: ${color}">${ans || word}</span>`;
+              }
+  
+              return `<span style="color: ${color}">${word}</span>`;
+          }).join('');
+  
+          // Add indentation back to the line
+          const indentedLine = leadingSpaces + highlightedLine;
+  
+          // If it's not the last line, add a newline character
+          return lineIndex < lines.length - 1 ? indentedLine + '\n' : indentedLine;
+      });
+  
+      return highlightedText.join('');
   }
   

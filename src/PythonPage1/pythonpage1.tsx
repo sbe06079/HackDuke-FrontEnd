@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./pythonpage1.css";
-import { askChatGPT, highlightCodeSnippetWithInputs, translateText } from "../utils";
+import { askChatGPT, highlightCodeSnippetWithInputs, highlightCodeSnippetWithInputsWhenPuttingInOnlyThePartAfterTheComment, highlightCodeSnippetWithInputsWhenPuttingInOnlyThePartAfterTheCommentAttemptTWO, translateText } from "../utils";
 import pythonAlgosData from '../../public/pythonAlgos.json';
 import parse from 'html-react-parser';
 import Modal from 'react-modal';
@@ -19,19 +19,22 @@ function PythonPage1() {
     const [question3, setQuestion3] = useState("");
     const [question4, setQuestion4] = useState("");
     const [popupOpen, setPopupOpen] = useState(true);
+    const [congrats, setCongrats] = useState(true);
 
     const id = Number(urlParams.get("id")?.toString());
     const codingProblem: any = pythonAlgosData.mappings.find(item => item.id === id)?.codeSnippet ?? "NO PROBLEM AVAILABLE";
     const codingTranslate = codingProblem.includes("def") ? codingProblem.split("def")[0] : codingProblem.split("print")[0];
-    const code = codingProblem.includes("def") ? "def " + codingProblem.split("def")[1] : "print " + codingProblem.split("print")[1];
-    //codingCode = ReactDOMServer.renderToString(highlightCodeSnippetWithInputs(codingCode));
+    let code = codingProblem.includes("def") ? "def " + codingProblem.split("def")[1] : "print " + codingProblem.split("print")[1];
+    code = highlightCodeSnippetWithInputsWhenPuttingInOnlyThePartAfterTheComment(code);
     const [codingCode, setCodingCode] = useState(code);
-
     console.log(codingCode);
+
     const hintPrompt = "Below is a simple Python problem where a few keywords are blurred out so they can learn by filling in the blank. Regardless of which buttons will be blurred out, what would be a good hint for the student? Ideally, the hint would give one or two sentences on what the code intends to do and maybe another sentence or two on typical things to consider when trying to understand that specific type of function. Give me the hint itself only, without quotes because this will be pasted directly from your answer to another site. " + codingCode;
 
     const setOpen = () => {setPopupOpen(true);};
     const setClose = () => {setPopupOpen(false);};
+    const setCorrect = () => {setCongrats(true);};
+    const setHint = () => {setCongrats(false);};
 
 
     useEffect(() => {
@@ -90,12 +93,26 @@ function PythonPage1() {
                 <div className="text">Python</div>
             </div>
         </div>
-        <Modal className="verificationPopup" isOpen={popupOpen} onRequestClose={setClose} ariaHideApp={false} style={{
-                    overlay: {
-                    }}}>
-                    <div className="popupTitle">Continue to Payment</div>
-                    <div className="popupText">Thank you for registering. You will be able to access the member portal once you complete payment.</div>
-                    <button className="popupOKButton" onClick={() => {setClose;}}>Ok</button>
+        <Modal className="popup" isOpen={popupOpen} onRequestClose={setClose} ariaHideApp={false} style={{overlay: {
+            backgroundColor: 'rgba(0, 0, 0, 0.20)', /* Background color with opacity */
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+        }}}>
+            {congrats ? (
+                <div>
+                    <p className="modalText">You’re on the right track.
+                    <br /> <br />It looks like there’s a small issue in your code. Make sure to try the hint button!</p>
+              </div>
+            ) : (
+                <div>
+                    <p className="modalText">Congratulations</p>
+                    <br />
+                    <br />
+                    {/* eslint-disable-next-line react/no-unescaped-entities */}
+                    <p>You've successfully implemented the module. Great job!</p>
+                </div>
+            )}
         </Modal>
         <div className="pythonContainer">
             <div className="questionBox">
