@@ -43,32 +43,34 @@ function PythonQuestionsAll() {
     }, [speakingLanguage]);
 
     useEffect(() => {
-        const delay = 1000; // 2 seconds (2000 milliseconds)
+        const delay = 1000; // 1 seconds (2000 milliseconds)
 
         const timerId = setTimeout(() => {
-        const handleClick = () => {
-            window.location.href = "/";
-        };
 
-        const element = document.getElementById('1');
-        console.log(element);
-        if (element) {
-            element.addEventListener('click', handleClick);
-        }
+            const handleClick = () => {
+                console.log("handle click");
+                window.location.href = "/";
+            };
 
-        // Cleanup the event listener when the component unmounts
-        return () => {
+            const element = document.getElementById('1');
+            console.log(element);
             if (element) {
-                element.removeEventListener('click', handleClick);
+                element.addEventListener('click', handleClick);
             }
-        };
+
+            // Cleanup the event listener when the component unmounts
+            return () => {
+                if (element) {
+                    element.removeEventListener('click', handleClick);
+                }
+            };
         }, delay);
 
         // Clear the timeout in case the component unmounts before the delay
         return () => {
             clearTimeout(timerId);
         };
-    }, []);
+    }, [speakingLanguage]);
 
     const page = <div>
         <div className="header">
